@@ -27,7 +27,8 @@ Understand what to document before exploring:
 
 ### Stage 2: Initial Exploration
 
-Use a haiku Explore subagent to scan the codebase broadly:
+Explore the codebase broadly to build a mental model. Use lightweight, fast exploration
+methods when available (in Claude Code, for example, use a Haiku Explore subagent):
 
 1. Scan directory structure and identify key entry points.
 2. Read README, config files, and existing documentation.
@@ -58,6 +59,28 @@ For each component in the approved outline:
 4. Find where data is stored or persisted.
 5. Build a code reference index (file paths + key function/class names).
 
+#### When to Stop Exploring
+
+**You're ready to draft when you can:**
+
+- **Trace the happy path** — Follow a typical request/action from entry point to
+  completion without gaps.
+- **Name the boundaries** — Clearly state what's in scope and what's external.
+- **Draw the diagram** — Sketch the architecture without placeholder boxes.
+- **Answer "what talks to what?"** — For each component, you know its inputs and outputs.
+
+**Signs you're not done:**
+
+- Uncertainty: "I think this connects to..." or "probably calls..."
+- Unresolved references: Found imports/calls to modules you haven't examined.
+- Missing edges: Can't explain how data gets from component A to B.
+
+**Signs you've gone too far:**
+
+- Reading every file in a directory instead of representative samples.
+- Tracing into external libraries or framework internals.
+- Exploring implementation details that don't affect architecture.
+
 ### Stage 4: Document Draft
 
 Generate the document following the template below. Present the draft to the user
@@ -70,7 +93,9 @@ for review and iterate based on feedback.
 
 ## Document Template
 
-Use this structure for the output document:
+The following template provides a starting point. Adapt it to fit the feature being
+documented — omit sections that don't apply, add sections for unique aspects, and
+adjust the structure to best serve the target audience.
 
 ````markdown
 # [Feature/System Name] Architecture
@@ -136,9 +161,12 @@ Use stable references that survive refactoring:
 - **Anchors**: Use search patterns when helpful (`handleAuth function in auth/`)
 
 Avoid:
-- Absolute line numbers (change frequently)
-- Copying large code blocks (summarize instead)
-- Hardcoded absolute paths
+
+- **Copying code**: Never paste code into the document. Code goes stale immediately;
+  the document should be a guide that points readers to the source. Describe what
+  code does, then reference where to find it.
+- **Line numbers**: They change with every edit.
+- **Absolute paths**: Use repository-relative paths only.
 
 ## Mermaid Diagrams
 
@@ -166,7 +194,8 @@ with unrelated components.
 
 ## Writing Guidelines
 
-- **Summarize, don't copy**: Explain what code does rather than reproducing it.
+- **Describe, never copy**: Explain what code does and where to find it. Readers who
+  need implementation details will read the actual source — which is always current.
 - **Structure for scanning**: Use headers, tables, and lists for quick navigation.
 - **Be specific**: Include actual file paths, function names, and config keys.
 - **Serve two audiences**: Write clearly for humans; use consistent structure for AI.
