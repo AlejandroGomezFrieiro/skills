@@ -10,6 +10,9 @@ Claude Skills extend Claude's capabilities with specialized knowledge and workfl
 
 Open Source skills support internal open-source package workflows.
 
+- **[create-release-checklist](./open-source/create-release-checklist/)** - Create a release checklist and GitHub issue for an R package, with automatic version calculation and customizable checklist generation
+- **[critical-code-reviewer](./open-source/critical-code-reviewer/)** - Conduct rigorous, adversarial code reviews identifying security holes, lazy patterns, edge case failures, and bad practices across Python, R, JavaScript/TypeScript, SQL, and front-end code
+- **[describe-design](./open-source/describe-design/)** - Research a codebase and create architectural documentation describing how features or systems work, with Mermaid diagrams and stable code references suitable for humans and AI agents
 - **[release-post](./open-source/release-post/)** - Create professional package release blog posts following Tidyverse or Shiny blog conventions, with support for both R and Python packages
 
 ### R Package Development
