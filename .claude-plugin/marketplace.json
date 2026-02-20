@@ -47,7 +47,9 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "./brand-yml"
+        "./brand-yml",
+        "./shiny/shiny-bslib",
+        "./shiny/shiny-bslib-theming"
       ]
     },
     {

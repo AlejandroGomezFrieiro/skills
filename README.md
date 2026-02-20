@@ -35,6 +35,8 @@ R package development skills for working with the r-lib ecosystem and modern R p
 Skills for Shiny app development in both R and Python.
 
 - **[brand-yml](./brand-yml/)** - Create and apply brand.yml files for consistent styling across Shiny apps, with support for bslib (R) and ui.Theme (Python), including automatic brand discovery and theming functions for plots and tables
+- **[shiny-bslib](./shiny/shiny-bslib/)** - Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns
+- **[shiny-bslib-theming](./shiny/shiny-bslib-theming/)** - Comprehensive theming for Shiny apps using bslib, covering bs_theme(), Bootswatch themes, custom colors, typography, Bootstrap Sass variables, custom Sass/CSS rules, dark mode, dynamic theming, and R plot theming
 
 ### Quarto
 
