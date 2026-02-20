@@ -316,3 +316,4 @@ If extensions conflict, try:
 - [Creating Extensions](https://quarto.org/docs/extensions/creating.html)
 - [Community Extensions](https://m.canouil.dev/quarto-extensions/)
 - [Extensions JSON API](https://m.canouil.dev/quarto-extensions/extensions.json)
+

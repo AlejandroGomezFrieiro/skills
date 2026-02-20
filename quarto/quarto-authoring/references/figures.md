@@ -285,3 +285,4 @@ format:
 - [Quarto Figures](https://quarto.org/docs/authoring/figures.html)
 - [Figure Layout](https://quarto.org/docs/authoring/figures.html#figure-panels)
 - [Lightbox](https://quarto.org/docs/output-formats/html-lightbox-figures.html)
+

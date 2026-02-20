@@ -214,17 +214,6 @@ Equation @eq-line shows...
 $$
 ````
 
-Or display-style:
-
-````markdown
-$$
-E = mc^2
-$$ {#eq-einstein}
-
-See @eq-einstein.
-$$
-````
-
 ## Theorems and Proofs
 
 ````markdown
@@ -316,19 +305,11 @@ crossref:
   tbl-title: "Tabelle"
 ```
 
-## bookdown Migration
-
-- `\@ref(fig:name)` → `@fig-name`
-- `\@ref(tab:name)` → `@tbl-name`
-- `\@ref(eq:name)` → `@eq-name`
-- `\@ref(thm:name)` → `@thm-name`
-- `(#fig:name)` → `{#fig-name}` or `#| label: fig-name`
-- `(#tab:name)` → `{#tbl-name}` or `#| label: tbl-name`
-
-Note: Quarto uses `tbl-` prefix (not `tab-`) for tables.
+For bookdown migration details, see [conversion-bookdown.md](conversion-bookdown.md).
 
 ## Resources
 
 - [Quarto Cross-References](https://quarto.org/docs/authoring/cross-references.html)
 - [Figures](https://quarto.org/docs/authoring/figures.html)
 - [Tables](https://quarto.org/docs/authoring/tables.html)
+
