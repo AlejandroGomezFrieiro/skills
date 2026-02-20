@@ -47,6 +47,24 @@ Skills for Quarto document creation and publishing.
 
 ## Installation
 
+### Using `npx skills add` (Any Agent)
+
+Install skills from this repository into any supported coding agent (Claude Code, Codex, Cursor, Cline, and [many more](https://github.com/vercel-labs/skills)) using the `npx skills add` CLI:
+
+```bash
+# List available skills without installing
+npx skills add posit-dev/skills --list
+
+# Install skills via an interactive menu
+npx skills add posit-dev/skills --all
+
+# Install specific skills by category name
+npx skills add posit-dev/skills --skill cli --skill lifecycle
+
+# Install to Claude Code only, globally
+npx skills add posit-dev/skills --agent claude-code --global
+```
+
 ### Claude Code
 
 #### Method 1: Add Marketplace
