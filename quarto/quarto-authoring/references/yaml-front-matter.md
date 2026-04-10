@@ -218,6 +218,29 @@ format:
     progress: true
 ```
 
+## Execution Engine
+
+Quarto auto-detects the engine from the first executable cell. Override explicitly:
+
+```yaml
+engine: knitr   # R (knitr)
+engine: jupyter # Python, Julia, or other Jupyter kernels
+```
+
+Specify the Jupyter kernel explicitly when needed:
+
+```yaml
+engine: jupyter
+jupyter: python3
+```
+
+Or use a specific virtual environment:
+
+```yaml
+engine: jupyter
+jupyter: myenv  # name of a venv/conda env with a registered kernel
+```
+
 ## Execution Options
 
 ```yaml
@@ -370,7 +393,7 @@ params:
   show_advanced: true
 ```
 
-Use in document:
+Use in R:
 
 ````markdown
 ```{r}
@@ -379,6 +402,24 @@ Use in document:
 data <- read.csv(params$data_file)
 ```
 ````
+
+Use in Python:
+
+````markdown
+```{python}
+#| label: read-data
+
+import pandas as pd
+data = pd.read_csv(params["data_file"])
+threshold = params["threshold"]
+```
+````
+
+Render with custom parameters:
+
+```bash
+quarto render report.qmd -P data_file:new_data.csv -P threshold:0.8
+```
 
 ## Include Files
 

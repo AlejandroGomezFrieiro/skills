@@ -201,13 +201,54 @@ gt(data) |>
 
 ### Python with pandas
 
+Auto-display as HTML (HTML output only):
+
 ````markdown
 ```{python}
 #| label: tbl-pandas
 #| tbl-cap: "Data summary."
 
 import pandas as pd
-df.to_markdown()
+summary_df
+```
+````
+
+Render as markdown table (works in HTML, PDF, and Word):
+
+````markdown
+```{python}
+#| label: tbl-pandas-md
+#| tbl-cap: "Data summary."
+#| output: asis
+
+import pandas as pd
+print(summary_df.to_markdown(index=False))
+```
+````
+
+### Python with polars
+
+````markdown
+```{python}
+#| label: tbl-polars
+#| tbl-cap: "Polars data summary."
+#| output: asis
+
+import polars as pl
+df = pl.read_csv("data.csv")
+print(df.to_pandas().to_markdown(index=False))
+```
+````
+
+### Python with Great Tables (gt for Python)
+
+````markdown
+```{python}
+#| label: tbl-gt
+#| tbl-cap: "Styled table."
+
+from great_tables import GT
+GT(summary_df).tab_header(title="My Table")
 ```
 ````
 
@@ -230,6 +271,8 @@ tbl-cap-location: top
 
 ### Per Table
 
+R:
+
 ````markdown
 ```{r}
 #| label: tbl-data
@@ -237,6 +280,19 @@ tbl-cap-location: top
 #| tbl-cap-location: bottom
 
 knitr::kable(data)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| label: tbl-data
+#| tbl-cap: "Data."
+#| tbl-cap-location: bottom
+#| output: asis
+
+print(df.to_markdown(index=False))
 ```
 ````
 
@@ -275,6 +331,8 @@ See @tbl-panel, including @tbl-first.
 
 ### From Code
 
+R:
+
 ````markdown
 ```{r}
 #| label: tbl-multi
@@ -286,6 +344,24 @@ See @tbl-panel, including @tbl-first.
 
 knitr::kable(summary_df)
 knitr::kable(detail_df)
+```
+````
+
+Python (each `print()` with `output: asis` produces one subtable):
+
+````markdown
+```{python}
+#| label: tbl-multi
+#| tbl-cap: "Multiple tables."
+#| tbl-subcap:
+#|   - "Summary"
+#|   - "Details"
+#| layout-ncol: 2
+#| output: asis
+
+print(summary_df.to_markdown(index=False))
+print("\n\n")
+print(detail_df.to_markdown(index=False))
 ```
 ````
 
@@ -341,12 +417,26 @@ Same as figures:
 
 For tables spanning multiple pages (PDF):
 
+R:
+
 ````markdown
 ```{r}
 #| label: tbl-long
 #| tbl-cap: "Long table."
 
 knitr::kable(long_data, longtable = TRUE)
+```
+````
+
+Python (use `output: asis` so the markdown table is recognized across pages):
+
+````markdown
+```{python}
+#| label: tbl-long
+#| tbl-cap: "Long table."
+#| output: asis
+
+print(long_df.to_markdown(index=False))
 ```
 ````
 

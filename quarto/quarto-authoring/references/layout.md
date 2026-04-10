@@ -106,12 +106,27 @@ This appears in the right margin.
 
 ### Figures in Margin
 
+R:
+
 ````markdown
 ```{r}
 #| column: margin
 #| fig-cap: "Margin figure."
 
 plot(1:10)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| column: margin
+#| fig-cap: "Margin figure."
+
+import matplotlib.pyplot as plt
+plt.plot(range(10))
+plt.show()
 ```
 ````
 
@@ -125,12 +140,26 @@ Or for markdown images:
 
 ### Tables in Margin
 
+R:
+
 ````markdown
 ```{r}
 #| column: margin
 #| tbl-cap: "Margin table."
 
 knitr::kable(small_data)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| column: margin
+#| tbl-cap: "Margin table."
+#| output: asis
+
+print(small_df.to_markdown(index=False))
 ```
 ````
 
@@ -152,6 +181,8 @@ Control output placement from code cells:
 
 ### Column Option
 
+R:
+
 ````markdown
 ```{r}
 #| column: page
@@ -161,11 +192,25 @@ plot(1:100)
 ```
 ````
 
+Python:
+
+````markdown
+```{python}
+#| column: page
+
+import matplotlib.pyplot as plt
+plt.plot(range(100))
+plt.show()
+```
+````
+
 Options: `body`, `body-outset`, `page`, `page-inset`, `screen`, `screen-inset`, `margin`.
 
 ### Figure Column
 
 Target figure outputs specifically:
+
+R:
 
 ````markdown
 ```{r}
@@ -175,15 +220,40 @@ plot(1:10)
 ```
 ````
 
+Python:
+
+````markdown
+```{python}
+#| fig-column: margin
+
+import matplotlib.pyplot as plt
+plt.plot(range(10))
+plt.show()
+```
+````
+
 ### Table Column
 
 Target table outputs:
+
+R:
 
 ````markdown
 ```{r}
 #| tbl-column: page
 
 knitr::kable(wide_data)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| tbl-column: page
+#| output: asis
+
+print(wide_df.to_markdown(index=False))
 ```
 ````
 

@@ -66,6 +66,8 @@ Alt text differs from caption - it describes the image content for accessibility
 
 Figures generated from code use hashpipe options:
 
+### R Examples
+
 ````markdown
 ```{r}
 #| label: fig-scatter
@@ -79,18 +81,79 @@ plot(x, y)
 ```
 ````
 
-### Python Example
+````markdown
+```{r}
+#| label: fig-ggplot
+#| fig-cap: "ggplot2 scatter with trend line."
+#| fig-width: 8
+#| fig-height: 6
+
+library(ggplot2)
+ggplot(data, aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+````
+
+### Python Examples
+
+Matplotlib:
 
 ````markdown
 ```{python}
 #| label: fig-histogram
 #| fig-cap: "Distribution of values."
-#| fig-width: 10
+#| fig-alt: "Histogram with 30 bins showing right-skewed distribution."
+#| fig-width: 8
 #| fig-height: 6
 
 import matplotlib.pyplot as plt
 plt.hist(data, bins=30)
+plt.xlabel("Value")
+plt.ylabel("Count")
 plt.show()
+```
+````
+
+Seaborn:
+
+````markdown
+```{python}
+#| label: fig-scatter
+#| fig-cap: "Scatter plot with regression line."
+#| fig-alt: "Scatter plot showing positive correlation between x and y."
+#| fig-width: 8
+#| fig-height: 6
+
+import seaborn as sns
+sns.regplot(x=df["x"], y=df["y"], data=df)
+```
+````
+
+Plotnine (ggplot2 for Python):
+
+````markdown
+```{python}
+#| label: fig-plotnine
+#| fig-cap: "ggplot-style scatter plot."
+#| fig-width: 8
+#| fig-height: 6
+
+from plotnine import ggplot, aes, geom_point, geom_smooth
+(ggplot(df, aes("x", "y")) + geom_point() + geom_smooth(method="lm"))
+```
+````
+
+Plotly (interactive HTML figures):
+
+````markdown
+```{python}
+#| label: fig-interactive
+#| fig-cap: "Interactive scatter plot."
+
+import plotly.express as px
+fig = px.scatter(df, x="x", y="y", color="group")
+fig.show()
 ```
 ````
 
@@ -127,6 +190,8 @@ See @fig-comparison, particularly @fig-first.
 
 ### From Code
 
+R:
+
 ````markdown
 ```{r}
 #| label: fig-panels
@@ -138,6 +203,25 @@ See @fig-comparison, particularly @fig-first.
 
 hist(x)
 hist(y)
+```
+````
+
+Python (each `plt.show()` call produces one subfigure):
+
+````markdown
+```{python}
+#| label: fig-panels
+#| fig-cap: "Panel figure."
+#| fig-subcap:
+#|   - "Distribution of X"
+#|   - "Distribution of Y"
+#| layout-ncol: 2
+
+import matplotlib.pyplot as plt
+plt.hist(x)
+plt.show()
+plt.hist(y)
+plt.show()
 ```
 ````
 
@@ -188,6 +272,8 @@ fig-cap-location: top
 
 ### Per Figure
 
+R:
+
 ````markdown
 ```{r}
 #| label: fig-example
@@ -195,6 +281,20 @@ fig-cap-location: top
 #| fig-cap-location: top
 
 plot(1:10)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| label: fig-example
+#| fig-cap: "Caption on top."
+#| fig-cap-location: top
+
+import matplotlib.pyplot as plt
+plt.plot(range(10))
+plt.show()
 ```
 ````
 

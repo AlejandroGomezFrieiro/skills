@@ -68,6 +68,16 @@ library(ggplot2)
 ```
 ````
 
+````markdown
+```{python}
+#| echo: false
+
+# This code runs but is not shown
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+````
+
 Show fenced code block with attributes:
 
 ````markdown
@@ -96,6 +106,8 @@ Options for controlling figure output:
 
 ### Figure Example
 
+R:
+
 ````markdown
 ```{r}
 #| label: fig-analysis
@@ -111,7 +123,25 @@ ggplot(data, aes(x, y)) +
 ```
 ````
 
+Python:
+
+````markdown
+```{python}
+#| label: fig-analysis
+#| fig-cap: "Analysis results showing the relationship between variables."
+#| fig-alt: "Scatter plot with trend line showing positive correlation."
+#| fig-width: 10
+#| fig-height: 6
+#| fig-align: center
+
+import seaborn as sns
+sns.regplot(x=data["x"], y=data["y"])
+```
+````
+
 ### Multiple Figures
+
+R:
 
 ````markdown
 ```{r}
@@ -124,6 +154,25 @@ ggplot(data, aes(x, y)) +
 
 hist(x)
 hist(y)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| label: fig-panels
+#| fig-cap: "Multiple panel figure."
+#| fig-subcap:
+#|   - "Distribution of X"
+#|   - "Distribution of Y"
+#| layout-ncol: 2
+
+import matplotlib.pyplot as plt
+plt.hist(x)
+plt.show()
+plt.hist(y)
+plt.show()
 ```
 ````
 
@@ -140,12 +189,37 @@ Options for controlling table output:
 
 ### Table Example
 
+R:
+
 ````markdown
 ```{r}
 #| label: tbl-summary
 #| tbl-cap: "Summary statistics by group."
 
 knitr::kable(summary_data)
+```
+````
+
+Python (pandas — `output: asis` renders markdown table in all formats):
+
+````markdown
+```{python}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics by group."
+#| output: asis
+
+print(summary_df.to_markdown(index=False))
+```
+````
+
+Python (pandas — plain `df` auto-displays as HTML table in HTML output):
+
+````markdown
+```{python}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics by group."
+
+summary_df
 ```
 ````
 
@@ -161,6 +235,8 @@ Control caching of code cell results:
 
 ### Caching Example
 
+R:
+
 ````markdown
 ```{r}
 #| label: slow-computation
@@ -168,6 +244,18 @@ Control caching of code cell results:
 
 # This expensive computation is cached
 result <- slow_function(data)
+```
+````
+
+Python:
+
+````markdown
+```{python}
+#| label: slow-computation
+#| cache: true
+
+# This expensive computation is cached
+result = slow_function(data)
 ```
 ````
 
@@ -240,6 +328,8 @@ plot(1:10)
 
 Add annotations to explain code:
 
+R:
+
 ````markdown
 ```{r}
 #| code-annotations: hover
@@ -254,6 +344,22 @@ mtcars |>                 # <1>
 1. Start with the mtcars dataset
 2. Filter to cars with MPG over 20
 3. Select only the columns we need
+
+Python:
+
+````markdown
+```{python}
+#| code-annotations: hover
+
+import pandas as pd                          # <1>
+df = pd.read_csv("data.csv")                 # <2>
+result = df[df["mpg"] > 20][["mpg", "cyl"]] # <3>
+```
+````
+
+1. Import pandas for data manipulation
+2. Load the dataset from a CSV file
+3. Filter rows and select columns of interest
 
 Annotation styles: `hover`, `select`, `below`, `beside`.
 

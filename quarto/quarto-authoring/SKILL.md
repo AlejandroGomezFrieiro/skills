@@ -1,12 +1,11 @@
 ---
 name: quarto-authoring
 description: >
-  Writing and authoring Quarto documents (.qmd), including code cell options,
-  figure and table captions, cross-references, callout blocks (notes, warnings,
-  tips), citations and bibliography, page layout and columns, Mermaid diagrams,
-  YAML metadata configuration, and Quarto extensions. Also covers converting and
-  migrating R Markdown (.Rmd), bookdown, blogdown, xaringan, and distill projects
-  to Quarto, and creating Quarto websites, books, presentations, and reports.
+  Writing and authoring Quarto documents (.qmd) with R (knitr) and Python (Jupyter)
+  engines. Covers code cells, figures, tables, cross-references, callouts, citations,
+  layout, Mermaid diagrams, YAML metadata, and extensions. Also covers migrating
+  R Markdown, bookdown, blogdown, xaringan, distill, and Jupyter notebooks to Quarto,
+  and creating websites, books, presentations, and reports.
 metadata:
   author: Mickaël Canouil (@mcanouil)
   version: "1.2"
@@ -74,6 +73,7 @@ Only read the one matching the source format when the user explicitly asks to co
 - xaringan slides: [references/conversion-xaringan.md](references/conversion-xaringan.md)
 - distill article: [references/conversion-distill.md](references/conversion-distill.md)
 - blogdown site: [references/conversion-blogdown.md](references/conversion-blogdown.md)
+- Jupyter notebook (.ipynb) to Quarto: [references/conversion-jupyter.md](references/conversion-jupyter.md)
 
 ## QMD Essentials
 
@@ -124,6 +124,8 @@ Quarto uses the language's comment symbol + `|` for cell options. Options use **
 - Mermaid: `%%|`
 - Graphviz/DOT: `//|`
 
+R example (knitr engine):
+
 ````markdown
 ```{r}
 #| label: fig-example
@@ -133,6 +135,27 @@ Quarto uses the language's comment symbol + `|` for cell options. Options use **
 plot(x, y)
 ```
 ````
+
+Python example (Jupyter engine):
+
+````markdown
+```{python}
+#| label: fig-example
+#| echo: false
+#| fig-cap: "A scatter plot example."
+
+import matplotlib.pyplot as plt
+plt.scatter(x, y)
+plt.show()
+```
+````
+
+Quarto auto-detects the engine from the first executable cell. To force an engine, set in YAML:
+
+```yaml
+engine: knitr   # for R
+engine: jupyter # for Python
+```
 
 Common execution options:
 
@@ -164,11 +187,27 @@ Labels must start with a type prefix. Reference with `@`:
 - Section: `sec-` prefix, e.g., `{#sec-intro}` → `@sec-intro`
 - Equation: `eq-` prefix, e.g., `{#eq-model}` → `@eq-model`
 
+R:
+
 ````markdown
 ```{r}
 #| label: fig-plot
 #| fig-cap: "A caption for the plot."
 plot(1)
+```
+
+See @fig-plot for the results.
+````
+
+Python:
+
+````markdown
+```{python}
+#| label: fig-plot
+#| fig-cap: "A caption for the plot."
+import matplotlib.pyplot as plt
+plt.plot([1])
+plt.show()
 ```
 
 See @fig-plot for the results.
